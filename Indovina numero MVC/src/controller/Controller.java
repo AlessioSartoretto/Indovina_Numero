@@ -25,7 +25,10 @@ public class Controller implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getActionCommand().equalsIgnoreCase("Prova")) {
 			String n = g.txt();
-			int r = i.Controllo(n);
+			int r = -2;
+			try {
+				r = i.Controllo(n);
+			} catch (Exception e) {}
 			g.tentativo(r, i.getTent(), i.getCas());
 		}
 		if(arg0.getActionCommand().equalsIgnoreCase("Ricomincia")) {

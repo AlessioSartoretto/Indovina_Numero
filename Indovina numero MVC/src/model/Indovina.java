@@ -12,7 +12,7 @@ public class Indovina {
 		fine = false;
 	}
 	
-	public int Controllo (String num){
+	public int Controllo (String num) throws Exception{
 		
 		if (fine) {
 			return 0;
@@ -23,11 +23,11 @@ public class Indovina {
 		try {
 			n = Integer.parseInt(num);
 		} catch (Exception e) {
-			return -2;
+			throw new Exception();
 		}
 		
 		if ((n>100)||(n<1)) {
-			return -2;
+			throw new Exception();
 		}
 		
 		tent++;
