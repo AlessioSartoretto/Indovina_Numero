@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -18,6 +17,7 @@ public class Grafica {
 	private JLabel lblNewLabel;
 	private JButton prova;
 	private JButton ricomincia;
+	private JButton stampa;
 	private JLabel tentativi;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
@@ -26,7 +26,6 @@ public class Grafica {
 	private JLabel lblNewLabel_5;
 	private JLabel notifica;
 	private JLabel indizio;
-	private JLabel img;
 
 	public Grafica() {
 		ImageIcon ico = new ImageIcon(getClass().getClassLoader().getResource("img/punto.jpg"));
@@ -99,16 +98,15 @@ public class Grafica {
 		indizio.setBounds(140, 255, 280, 16);
 		frmIndovinaNumero.getContentPane().add(indizio);
 		
-		img = new JLabel("");
-		Image im = new ImageIcon(this.getClass().getResource("/img/logo.jpg")).getImage();
-		img.setIcon(new ImageIcon(im));
-		img.setBounds(358, 323, 74, 99);
-		frmIndovinaNumero.getContentPane().add(img);
+		stampa = new JButton("Stampa log");
+		stampa.setBounds(318, 385, 103, 25);
+		frmIndovinaNumero.getContentPane().add(stampa);
 	}
 	
 	public void registraController(Controller controller) {
 		prova.addActionListener(controller);
 		ricomincia.addActionListener(controller);
+		stampa.addActionListener(controller);
 	}
 
 	public void mostra() {
@@ -144,6 +142,7 @@ public class Grafica {
 				tentativi.setText("Hai indovinato in " + tent + " tentativi.");
 				num.setText("");
 				num.setEnabled(false);
+				prova.setEnabled(false);
 				break;
 			}
 		}
@@ -153,6 +152,7 @@ public class Grafica {
 		notifica.setText("");
 		indizio.setText("");
 		num.setText("");
+		prova.setEnabled(true);
 		num.setEnabled(true);
 		tentativi.setText("Tentativi effettuati: 0");
 	}
@@ -160,5 +160,4 @@ public class Grafica {
 	public String txt() {
 		return num.getText();
 	}
-	
 }

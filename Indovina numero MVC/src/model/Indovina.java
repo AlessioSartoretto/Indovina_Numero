@@ -2,45 +2,45 @@ package model;
 
 public class Indovina {
 
+	private Log l;
 	private int cas;
 	private int tent;
-	private boolean fine;
 	
-	public Indovina() {
+	public Indovina(Log l) {
+		this.l = l;
 		cas = (int) (Math.random()*100)+1;
 		tent = 0;
-		fine = false;
 	}
 	
 	public int Controllo (String num) throws Exception{
-		
-		if (fine) {
-			return 0;
-		}
 		
 		int n;
 		
 		try {
 			n = Integer.parseInt(num);
 		} catch (Exception e) {
+			l.scrivi("Errore di input: " + num + "\n");
 			throw new Exception();
 		}
 		
 		if ((n>100)||(n<1)) {
+			l.scrivi("Errore di input: " + num + "\n");
 			throw new Exception();
 		}
 		
 		tent++;
 		
 		if (n<cas) {
+			l.scrivi("Tentativo n." + tent + ": " + num + "\n");
 			return -1;
 		}
 		
 		if (n>cas) {
+			l.scrivi("Tentativo n." + tent + ": " + num + "\n");
 			return 1;
 		}
 		
-		fine = true;
+		l.scrivi("Tentativo n." + tent + ": numero indovinato\n");
 		return 0;
 		
 	}

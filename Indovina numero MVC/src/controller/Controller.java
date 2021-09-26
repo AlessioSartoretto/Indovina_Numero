@@ -22,7 +22,8 @@ public class Controller implements ActionListener {
 	
 	public void inizio() {
 		g.mostra();
-		l.writeInizio();
+		l.scrivi("Inizio gioco\n");
+		l.scrivi("Numero generato: " + i.getCas() + "\n");
 	}
 
 	@Override
@@ -39,7 +40,11 @@ public class Controller implements ActionListener {
 		}
 		if(arg0.getActionCommand().equalsIgnoreCase("Ricomincia")) {
 			g.riparti();
-			i = new Indovina();
+			i = new Indovina(l);
+			l.scrivi("Numero generato: " + i.getCas() + "\n");
+		}
+		if(arg0.getActionCommand().equalsIgnoreCase("Stampa log")) {
+			l.stampa();
 		}
 	}
 
