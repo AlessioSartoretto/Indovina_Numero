@@ -1,6 +1,5 @@
 package model;
 
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -37,18 +36,19 @@ public class Log {
 	}
 
 	public String stampa() {
-		BufferedReader reader = null;
-		String l = "";
+		FileReader fr = null;
 		String s = "";
 		try {
-			reader = new BufferedReader (new FileReader ("log.txt"));
-			while ( (l = reader.readLine()) != null) {
-				s += l + "\n";
+			fr = new FileReader("log.txt");
+			int i = 0;
+			while ((i = fr.read()) != -1) {
+				s += ((char) i);
 			}
+			fr.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(s);
+		//System.out.println(s);
 		return s;
 	}
 	
