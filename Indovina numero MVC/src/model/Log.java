@@ -35,19 +35,20 @@ public class Log {
 		return d;
 	}
 
-	public void stampa() {
+	public String stampa() {
 		FileReader fr = null;
+		String s = "";
 		try {
 			fr = new FileReader("log.txt");
 			int i = 0;
 			while ((i = fr.read()) != -1) {
-				System.out.print((char) i);
+				s += ((char) i);
 			}
 			fr.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return s;
 	}
-	
 	
 }
