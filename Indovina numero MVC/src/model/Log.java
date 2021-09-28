@@ -1,5 +1,6 @@
 package model;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,19 +37,36 @@ public class Log {
 	}
 
 	public String stampa() {
-		FileReader fr = null;
+		BufferedReader reader = null;
+		String l = "";
 		String s = "";
 		try {
-			fr = new FileReader("log.txt");
-			int i = 0;
-			while ((i = fr.read()) != -1) {
-				s += ((char) i);
+			reader = new BufferedReader (new FileReader ("log.txt"));
+			while ( (l = reader.readLine()) != null) {
+				s += l + "\n";
 			}
-			fr.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println(s);
 		return s;
+	}
+	
+	public int file() {
+		SimpleDateFormat d = new SimpleDateFormat("yyyyMMddhhmmss");
+		String f = d.format(new Date());
+		f += "_log.txt";
+		String s = stampa();
+		//System.out.println(s);
+		FileWriter fw;
+		try {
+			fw = new FileWriter(f);
+			fw.write(s);
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 	
 }

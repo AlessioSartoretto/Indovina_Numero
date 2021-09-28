@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 import controller.Controller;
+import model.Log;
+
 import java.awt.Color;
 
 public class Grafica {
@@ -27,7 +29,7 @@ public class Grafica {
 	private JLabel notifica;
 	private JLabel indizio;
 
-	public Grafica() {
+	public Grafica(Log l) {
 		ImageIcon ico = new ImageIcon(getClass().getClassLoader().getResource("img/punto.jpg"));
 		frmIndovinaNumero = new JFrame();
 		frmIndovinaNumero.setIconImage(ico.getImage());
@@ -35,7 +37,7 @@ public class Grafica {
 		frmIndovinaNumero.setResizable(false);
 		frmIndovinaNumero.setTitle("Indovina numero");
 		frmIndovinaNumero.setBounds(100, 100, 450, 470);
-		frmIndovinaNumero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmIndovinaNumero.setDefaultCloseOperation(fine(l));
 		frmIndovinaNumero.getContentPane().setLayout(null);
 		
 		lblNewLabel = new JLabel("Ho generato un numero tra 1 e 100, lo scopo del gioco \u00E8 quello di");
@@ -160,4 +162,10 @@ public class Grafica {
 	public String txt() {
 		return num.getText();
 	}
+	
+	private int fine(Log l) {
+		l.file();
+		return JFrame.EXIT_ON_CLOSE;
+	}
+	
 }
